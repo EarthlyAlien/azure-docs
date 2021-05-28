@@ -9,7 +9,7 @@ manager: celestedg
 ms.service: active-directory
 ms.workload: identity
 ms.topic: how-to
-ms.date: 02/14/2020
+ms.date: 05/18/2021
 ms.author: mimart
 ms.subservice: B2C
 ---
@@ -22,21 +22,21 @@ There are three primary steps required for enabling Azure Pipelines to manage cu
 
 1. Create a web application registration in your Azure AD B2C tenant
 1. Configure an Azure Repo
-1. Configure an Azure Pipeline
+1. Configure Azure Pipelines
 
 > [!IMPORTANT]
-> Managing Azure AD B2C custom policies with an Azure Pipeline currently uses **preview** operations available on the Microsoft Graph API `/beta` endpoint. Use of these APIs in production applications is not supported. For more information, see the [Microsoft Graph REST API beta endpoint reference](https://docs.microsoft.com/graph/api/overview?toc=./ref/toc.json&view=graph-rest-beta).
+> Managing Azure AD B2C custom policies with Azure Pipelines currently uses **preview** operations available on the Microsoft Graph API `/beta` endpoint. Use of these APIs in production applications is not supported. For more information, see the [Microsoft Graph REST API beta endpoint reference](/graph/api/overview?toc=.%2fref%2ftoc.json&view=graph-rest-beta&preserve-view=true).
 
 ## Prerequisites
 
-* [Azure AD B2C tenant](tutorial-create-tenant.md), and credentials for a user in the directory with the [B2C IEF Policy Administrator](../active-directory/users-groups-roles/directory-assign-admin-roles.md#b2c-ief-policy-administrator) role
-* [Custom policies](custom-policy-get-started.md) uploaded to your tenant
+* [Azure AD B2C tenant](tutorial-create-tenant.md), and credentials for a user in the directory with the [B2C IEF Policy Administrator](../active-directory/roles/permissions-reference.md#b2c-ief-policy-administrator) role
+* [Custom policies](tutorial-create-user-flows.md?pivots=b2c-custom-policy) uploaded to your tenant
 * [Management app](microsoft-graph-get-started.md) registered in your tenant with the Microsoft Graph API permission *Policy.ReadWrite.TrustFramework*
-* [Azure Pipeline](https://azure.microsoft.com/services/devops/pipelines/), and access to an [Azure DevOps Services project][devops-create-project]
+* [Azure Pipelines](https://azure.microsoft.com/services/devops/pipelines/), and access to an [Azure DevOps Services project][devops-create-project]
 
 ## Client credentials grant flow
 
-The scenario described here makes use of service-to-service calls between Azure Pipelines and Azure AD B2C by using the OAuth 2.0 [client credentials grant flow](../active-directory/develop/v1-oauth2-client-creds-grant-flow.md). This grant flow permits a web service like Azure Pipelines (the confidential client) to use its own credentials instead of impersonating a user to authenticate when calling another web service (the Microsoft Graph API, in this case). Azure Pipelines obtains a token non-interactively, then makes requests to the Microsoft Graph API.
+The scenario described here makes use of service-to-service calls between Azure Pipelines and Azure AD B2C by using the OAuth 2.0 [client credentials grant flow](../active-directory/azuread-dev/v1-oauth2-client-creds-grant-flow.md). This grant flow permits a web service like Azure Pipelines (the confidential client) to use its own credentials instead of impersonating a user to authenticate when calling another web service (the Microsoft Graph API, in this case). Azure Pipelines obtains a token non-interactively, then makes requests to the Microsoft Graph API.
 
 ## Register an application for management tasks
 
@@ -55,8 +55,8 @@ With a management application registered, you're ready to configure a repository
 1. In your project, navigate to **Repos** and select the **Files** page. Select an existing repository or create one for this exercise.
 1. Create a folder named *B2CAssets*. Name the required placeholder file *README.md* and **Commit** the file. You can remove this file later, if you like.
 1. Add your Azure AD B2C policy files to the *B2CAssets* folder. This includes the *TrustFrameworkBase.xml*, *TrustFrameWorkExtensions.xml*, *SignUpOrSignin.xml*, *ProfileEdit.xml*, *PasswordReset.xml*, and any other policies you've created. Record the filename of each Azure AD B2C policy file for use in a later step (they're used as PowerShell script arguments).
-1. Create a folder named *Scripts* in the root directory of the repository, name the placeholder file *DeployToB2c.ps1*. Don't commit the file at this point, you'll do so in a later step.
-1. Paste the following PowerShell script into *DeployToB2c.ps1*, then **Commit** the file. The script acquires a token from Azure AD and calls the Microsoft Graph API to upload the policies within the *B2CAssets* folder to your Azure AD B2C tenant.
+1. Create a folder named *Scripts* in the root directory of the repository, name the placeholder file *DeployToB2C.ps1*. Don't commit the file at this point, you'll do so in a later step.
+1. Paste the following PowerShell script into *DeployToB2C.ps1*, then **Commit** the file. The script acquires a token from Azure AD and calls the Microsoft Graph API to upload the policies within the *B2CAssets* folder to your Azure AD B2C tenant.
 
     ```PowerShell
     [Cmdletbinding()]
@@ -103,7 +103,7 @@ With a management application registered, you're ready to configure a repository
     exit 0
     ```
 
-## Configure your Azure pipeline
+## Configure Azure Pipelines
 
 With your repository initialized and populated with your custom policy files, you're ready to set up the release pipeline.
 
@@ -207,10 +207,10 @@ You should see a notification banner that says that a release has been queued. T
 
 Learn more about:
 
-* [Service-to-service calls using client credentials](https://docs.microsoft.com/azure/active-directory/develop/v1-oauth2-client-creds-grant-flow)
-* [Azure DevOps Services](https://docs.microsoft.com/azure/devops/user-guide/?view=azure-devops)
+* [Service-to-service calls using client credentials](../active-directory/azuread-dev/v1-oauth2-client-creds-grant-flow.md)
+* [Azure DevOps Services](/azure/devops/user-guide/)
 
 <!-- LINKS - External -->
-[devops]: https://docs.microsoft.com/azure/devops/?view=azure-devops
-[devops-create-project]:  https://docs.microsoft.com/azure/devops/organizations/projects/create-project?view=azure-devops
-[devops-pipelines]: https://docs.microsoft.com/azure/devops/pipelines
+[devops]: /azure/devops/
+[devops-create-project]:  /azure/devops/organizations/projects/create-project
+[devops-pipelines]: /azure/devops/pipelines

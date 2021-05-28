@@ -5,7 +5,7 @@ author: Heidilohr
 ms.topic: how-to
 ms.date: 09/24/2019
 ms.author: helohr
-manager: lizross
+manager: femila
 ---
 # Connect to Windows Virtual Desktop with the web client
 
@@ -18,6 +18,8 @@ The web client lets you access your Windows Virtual Desktop resources from a web
 >The web client doesn't currently have mobile OS support.
 
 ## Supported operating systems and browsers
+>[!IMPORTANT]
+>Beginning 30 September 2021, the Windows Virtual Desktop web client will no longer support Internet Explorer 11. We recommend that you transition to using the Microsoft Edge browser instead of Internet Explorer 11. For more information, check out our Tech Community [blog post](https://aka.ms/WVDSupportIE11).
 
 While any HTML5-capable browser should work, we officially support the following operating systems and browsers.
 
@@ -35,6 +37,8 @@ In a browser, navigate to the Azure Resource Manager-integrated version of the W
 
 >[!NOTE]
 >If you're using Windows Virtual Desktop (classic) without Azure Resource Manager integration, connect to your resources at <https://rdweb.wvd.microsoft.com/webclient> instead.
+>
+> If you're using the US Gov portal, use <https://rdweb.wvd.azure.us/arm/webclient/index.html>.
 
 >[!NOTE]
 >If you've already signed in with a different Azure Active Directory account than the one you want to use for Windows Virtual Desktop, you should either sign out or use a private browser window.

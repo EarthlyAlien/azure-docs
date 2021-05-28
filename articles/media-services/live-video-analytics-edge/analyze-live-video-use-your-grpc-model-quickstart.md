@@ -1,12 +1,14 @@
 ---
-title:  Analyze live video by using your own gRPC model - Azure
-description: In this quickstart, you'll apply computer vision to analyze the live video feed from a (simulated) IP camera. 
+title: Analyze live video by using your own gRPC model with Live Video Analytics - Azure
+description: In this quickstart, you'll apply computer vision to analyze the live video feed from a (simulated) IP camera with Live Video Analytics. 
 ms.topic: quickstart
 ms.date: 08/14/2020
 zone_pivot_groups: ams-lva-edge-programming-languages
 
 ---
-# Quickstart: Analyze live video by using your own gRPC model
+# Quickstart: Analyze live video by using your own gRPC model with Live Video Analytics
+
+[!INCLUDE [redirect to Azure Video Analyzer](./includes/redirect-video-analyzer.md)]
 
 This quickstart shows you how to use Live Video Analytics on IoT Edge to analyze a live video feed from a (simulated) IP camera. You'll see how to apply a computer vision model to detect objects. A subset of the frames in the live video feed is sent to an inference service. The results are sent to IoT Edge Hub.
 
@@ -51,11 +53,11 @@ This quickstart shows you how to use Live Video Analytics on IoT Edge to analyze
 ## Create and deploy the media graph
 
 ::: zone pivot="programming-language-csharp"
-[!INCLUDE [create and deply the media graph](includes/analyze-live-video-your-grpc-model-quickstart/csharp/create-deploy-media-graph.md)]
+[!INCLUDE [create and deploy the media graph](includes/analyze-live-video-your-grpc-model-quickstart/csharp/create-deploy-media-graph.md)]
 ::: zone-end
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [create and deply the media graph](includes/analyze-live-video-your-grpc-model-quickstart/python/create-deploy-media-graph.md)]
+[!INCLUDE [create and deploy the media graph](includes/analyze-live-video-your-grpc-model-quickstart/python/create-deploy-media-graph.md)]
 ::: zone-end
 
 ## Interpret results
@@ -74,4 +76,9 @@ If you intend to try other quickstarts, keep the resources you created. Otherwis
 
 ## Next steps
 
-Try running different media graph topologies using gRPC protocol.
+* Try running different media graph topologies using gRPC protocol.
+* **Build and run sample Live Video Analytics (LVA) extensions**
+<br/>Try our Jupyter sample notebooks that enable you to build and run [ONNX](http://onnx.ai/) based YOLO models as Live Video Analytics (LVA) extension.
+    * [Sample YOLOv3 model](https://github.com/Azure/live-video-analytics/tree/master/utilities/video-analysis/notebooks/Yolo/yolov3/yolov3-grpc-icpu-onnx/readme.md)
+    * [Sample YOLOv4 model](https://github.com/Azure/live-video-analytics/blob/master/utilities/video-analysis/notebooks/Yolo/yolov4/yolov4-grpc-icpu-onnx/readme.md)
+

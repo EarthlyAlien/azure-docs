@@ -4,6 +4,7 @@ description: Learn how to use Packer and PowerShell to create images of virtual 
 author: cynthn
 ms.service: virtual-machines
 ms.subservice: imaging
+ms.collection: windows
 ms.topic: how-to
 ms.workload: infrastructure
 ms.date: 08/05/2020
@@ -98,7 +99,7 @@ Create a file named *windows.json* and paste the following content. Enter your o
         "task": "Image deployment"
     },
 
-    "location": "East US",
+    "build_resource_group_name": "myPackerGroup",
     "vm_size": "Standard_D2_v2"
   }],
   "provisioners": [{
